@@ -1,0 +1,1 @@
+ASSIGNMENT_FOLDER_PATH = '../assignment'
