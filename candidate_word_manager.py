@@ -8,7 +8,7 @@ def load_all_valid_cities() -> DataFrame:
 
 def word_matches_correct_letter_positions(word: str, correct_letter_positions: dict[int, str]) -> bool:
     for position, letter in correct_letter_positions.items():
-        if word[position] != letter:
+        if position >= len(word) or word[position] != letter:
             return False
     return True
 

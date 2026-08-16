@@ -1,5 +1,8 @@
 def parse_correct_letter_positions_from_feedback(feedback: str) -> dict[int, str]:
     correct_letter_positions: dict[int, str] = {}
+    if not feedback or any(character != '-' and not character.isupper() for character in feedback):
+        return correct_letter_positions
+
     for position, character in enumerate(feedback):
         if character != '-':
             correct_letter_positions[position] = character

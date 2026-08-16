@@ -1,5 +1,18 @@
 from typing import Any
-from client import Agent, AgentConfig, RequestInfo
+from pathlib import Path
+import sys
+
+try:
+    from client import Agent, AgentConfig, RequestInfo
+except ModuleNotFoundError as error:
+    if error.name != "client":
+        raise
+
+    assignment_directory = Path(__file__).resolve().parent.parent / "assignment"
+    if not assignment_directory.is_dir():
+        raise
+    sys.path.insert(0, str(assignment_directory))
+    from client import Agent, AgentConfig, RequestInfo
 from candidate_word_manager import load_all_valid_cities, filter_all_candidates
 from feedback_parser import update_correct_letter_positions, update_wrong_letters, update_eliminated_words
 from probability_calculator import calculate_all_candidate_probabilities
